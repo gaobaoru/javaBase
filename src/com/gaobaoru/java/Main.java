@@ -67,10 +67,87 @@ public class Main {
         print(16,sb.toString());
 
     }
+    //ArrayList的使用,复杂度O(n)
+    public static void demoArrayList(){
+        List<String> strList = new ArrayList<String>(10);
+        for(int i = 0; i < 4; i++){
+            strList.add(String.valueOf(i*i));
+        }
+        print(1,strList);
+
+        List<String> strListB = new ArrayList<>(10);
+        for(int i = 0; i < 4; i++){
+            strListB.add(String.valueOf(i));
+        }
+        strList.addAll(strListB);
+        print(2,strList);
+        strList.remove(0);
+        print(3,strList);
+        strList.remove(String.valueOf(1));
+        print(4,strList);
+        print(5,strList.get(1));
+        Collections.reverse(strList);
+        print(6,strList);
+        Collections.sort(strList);
+        print(7,strList);
+        Collections.sort(strList, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o2.compareTo(o1);
+            }
+        });
+        print(8,strList);
+
+        for(String obj : strList){
+            print(9, obj);
+        }
+    }
+    //HashMap的使用，非线程安全；HashTable是线程安全的
+    public static void demoHashMap(){
+        Map<String, String> map = new HashMap<String, String>();
+        for(int i = 0; i < 4; i++){
+            map.put(String.valueOf(i), String.valueOf(i*i));
+        }
+        print(1,map);
+
+        for(Map.Entry<String, String> entry : map.entrySet()){
+            print(2,entry.getKey() + ":" + entry.getValue());
+        }
+
+        print(3,map.keySet());
+        print(4,map.values());
+        print(5,map.get("3"));
+        print(6,map.containsKey("A"));
+        map.replace("3", "27");
+        print(7,map.get("3"));
+    }
+    //Set的使用
+    public static void demoSet(){
+        Set<String> strSet = new HashSet<String>();
+        for(int i = 0; i < 3; i++){
+            strSet.add(String.valueOf(i));
+        }
+        print(1,strSet);
+        print(2,strSet);
+        strSet.remove(String.valueOf(1));
+        print(3,strSet);
+        print(4, strSet.contains(String.valueOf(1)));
+        print(5,strSet.isEmpty());
+        print(6,strSet.size());
+        strSet.addAll(Arrays.asList(new String[]{"A","M","B"}));
+        print(7,strSet);
+        for(String val : strSet){
+            print(8,val);
+        }
+
+    }
     public static void main(String[] args) {
         //测试函数
         //demoRandom();
         //demoMath();
-        demoString();
+        //demoString();
+        //demoArrayList();
+        //demoHashMap();
+        demoSet();
     }
 }
